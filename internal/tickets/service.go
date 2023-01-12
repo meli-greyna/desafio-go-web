@@ -2,8 +2,6 @@ package tickets
 
 import (
 	"context"
-
-	"github.com/bootcamp-go/desafio-go-web/internal/domain"
 )
 
 type service struct {
@@ -11,7 +9,7 @@ type service struct {
 }
 
 type Service interface {
-	GetTotalTickets(context.Context, string) ([]domain.Ticket, error)
+	GetTotalTickets(context.Context, string) (int, error)
 	AverageDestination(context.Context, string) (float64, error)
 }
 
@@ -19,13 +17,13 @@ func NewService(r Repository) Service {
 	return &service{r: r}
 }
 
-func (s *service) GetTotalTickets(ctx context.Context, country string) ([]domain.Ticket, error) {
+func (s *service) GetTotalTickets(ctx context.Context, country string) (int, error) {
 	tickets, err := s.r.GetTicketByDestination(ctx, country)
 	if err != nil {
-		return []domain.Ticket{}, err
+		return 0, err
 	}
 
-	return tickets, nil
+	return len(tickets), nil
 }
 
 func (s *service) AverageDestination(ctx context.Context, country string) (float64, error) {

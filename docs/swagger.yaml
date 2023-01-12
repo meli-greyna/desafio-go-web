@@ -1,0 +1,50 @@
+host: localhost/8080
+info:
+  contact:
+    name: API Support
+    url: https://real.url
+  description: This API handles airline tickets.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: https://fake.url/
+  title: MELI Bootcamp API
+  version: "1.0"
+paths:
+  /ticket/getAverage/:dest:
+    get:
+      description: Gets the percentage of total tickets bought over the last day with
+        destination of given country
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Destination percentage
+      tags:
+      - Tickets
+  /ticket/getByCountry/:dest:
+    get:
+      description: Gets the number of tickets bought for a trip to a given country
+        passed by URL parameter
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get tickets by country
+      tags:
+      - Tickets
+swagger: "2.0"

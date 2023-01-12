@@ -17,6 +17,13 @@ func NewService(s tickets.Service) *Service {
 	}
 }
 
+// @Summary Get tickets by country
+// @Tags Tickets
+// @Description Gets the number of tickets bought for a trip to a given country passed by URL parameter
+// @Produce json
+// @Param token header string true "token"
+// @Success 200
+// @Router /ticket/getByCountry/:dest [GET]
 func (s *Service) GetTicketsByCountry() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
@@ -32,6 +39,13 @@ func (s *Service) GetTicketsByCountry() gin.HandlerFunc {
 	}
 }
 
+// @Summary Destination percentage
+// @Tags Tickets
+// @Description Gets the percentage of total tickets bought over the last day with destination of given country
+// @Produce json
+// @Param token header string true "token"
+// @Success 200
+// @Router /ticket/getAverage/:dest [GET]
 func (s *Service) AverageDestination() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
